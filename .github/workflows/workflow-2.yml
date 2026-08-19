@@ -37,7 +37,7 @@ jobs:
 
       - name: Build and Push Docker image 
         env:
-          REGISTRY: ${{secrets.AWS_ACCOUNT_ID}}.dkr.ecr.eu-central-1.amzonaws.com
+          REGISTRY: ${{secrets.AWS_ACCOUNT_ID}}.dkr.ecr.eu-central-1.amazonaws.com
           REPO: githubactions/ex4
         run: |
           docker stop java-app || true
