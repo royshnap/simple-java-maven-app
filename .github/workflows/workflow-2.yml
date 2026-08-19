@@ -1,4 +1,4 @@
-name: CI/CD Build and Push Image to ECR
+name: CI/CD Build and Push image to ECR
 
 on:
   push:
