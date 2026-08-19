@@ -43,5 +43,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/java-gitactions:15
+            ${{ secrets.DOCKER_USERNAME }}/java-gitactions:${{ github.run_number }}
             ${{ secrets.DOCKER_USERNAME }}/java-gitactions:latest
