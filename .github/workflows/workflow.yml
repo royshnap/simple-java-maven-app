@@ -1,4 +1,4 @@
-name: CI/CD - Build and push docker image
+name: CI/CD - Build and Push to Dockerhub
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Bump Patch Version via Maven
+      - name: Patch Version via Maven
         id: versioning
         run: mvn versions:set -DnewVersion=1.0.${{ github.run_number }} -DgenerateBackupPoms=false
 
@@ -43,5 +43,5 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/java-gitactions:${{ github.run_number }}
             ${{ secrets.DOCKER_USERNAME }}/java-gitactions:latest
     
-      - name: Test image
+      - name: Verify App is runnig
         run: docker run --rm ${{ secrets.DOCKER_USERNAME }}/java-gitactions:latest | grep -q "Hello World!" && echo "Success" || exit 1
