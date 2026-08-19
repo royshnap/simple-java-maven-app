@@ -1,0 +1,15 @@
+name: Workflow for jave-maven repo
+
+on: [push]
+
+jobs:
+  explore-actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check our repo code
+        uses: actions/checkout@v4
+
+      - name: say hello
+        run: echo"hello world"
+
