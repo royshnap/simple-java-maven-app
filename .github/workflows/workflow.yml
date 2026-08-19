@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Test
-        run: echo ${{ secrets.DOCKER_USERNAME }}/java-gitactions:${{ steps.versioning.outputs.version }}
+        run: echo ${{ secrets.DOCKER_USERNAME }}/java-gitactions:${{ github.run_number }}
              echo ${{ secrets.DOCKER_USERNAME }}/java-gitactions:latest
 
       - name: Build and Push Docker Image
@@ -43,5 +43,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/java-gitactions:${{ steps.versioning.outputs.version }}
+            ${{ secrets.DOCKER_USERNAME }}/java-gitactions:${{ github.run_number }}
             ${{ secrets.DOCKER_USERNAME }}/java-gitactions:latest
