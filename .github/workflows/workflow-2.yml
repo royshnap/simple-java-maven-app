@@ -37,7 +37,7 @@ jobs:
           docker rm java-app || true
           docker run -d --name java-app $REGISTRY/$REPO:latest
       
-      - name: Verify app is runnig 
+      - name: Verify App is runnig 
         run: docker logs java-app | grep -q "Hello World!" && echo "Success" || exit 1
 
 
