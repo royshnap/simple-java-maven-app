@@ -34,8 +34,20 @@ jobs:
         run: |
           aws ecr get-login-password --region eu-central-1 | \
             docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-central-1.amazonaws.com
+      
+      - name: Build and Push Docker Image
+        env:
+          REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+          REPO: githubactions/ex4
+          TAG: ${{ github.run_number }}
+        run: |
+          docker build -t $REGISTRY/$REPO:$TAG -f ./Dockerfile .
+          docker push $REGISTRY/$REPO:$TAG
+          
+          docker tag $REGISTRY/$REPO:$TAG $REGISTRY/$REPO:latest
+          docker push $REGISTRY/$REPO:latest
 
-      - name: Build and Push Docker image 
+      - name: Deploy Container
         env:
           REGISTRY: ${{secrets.AWS_ACCOUNT_ID}}.dkr.ecr.eu-central-1.amazonaws.com
           REPO: githubactions/ex4
