@@ -1,7 +1,9 @@
-name: CI/CD Build and Push to ECR
+name: CI/CD Build and Push Image to ECR
 
 on:
   push:
+    branches:
+      - "AWS-Infrastructure"
 
 jobs:
   build-and-deploy:
